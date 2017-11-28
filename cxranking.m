@@ -50,7 +50,7 @@ function FitnV = cxranking(ObjV, RFun, SUBPOP)
     end
     % numel函数返回的是矩阵中元素的个数,增强性能
     if numel(RFun) == 2 % RFun 为1行2列的向量
-        if RFun(2) == 1, NonLin = 1;
+        if RFun(2) == 1, NonLin = 1; %判断现行还是非线性
         elseif RFun(2) == 0, NonLin = 0;
         else error('Parameter for ranking method must be 0 or 1');
         end
