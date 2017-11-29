@@ -78,14 +78,14 @@ function FitnV = cxranking(ObjV, RFun, SUBPOP)
         RFun = 2* [0:Nind-1]'/(Nind-1);
     elseif numel(RFun) == 1  %RFun在之前已经处理过，变成一个标量
         if NonLin == 1 
-            %非线性处理,指数分割
+            %非线性处理
             if RFun(1) < 1, error('Selective pressure must be greater than 1');
             elseif RFun(1) > Nind-2, error('Selective pressure too big'); 
             end
             Root1 = roots([RFun(1)-Nind [RFun(1)*ones(1,Nind-1)]]);
-            %指数分割
             RFun = (abs(Root1(1)) * ones(Nind,1)) .^ [(0:Nind-1)'];
             RFun = RFun / sum(RFun) * Nind;
+            %%%%%%%%%%%%%%%%%%%
         else
             %线性处理
             % linear ranking with SP between 1 and 2
@@ -98,7 +98,6 @@ function FitnV = cxranking(ObjV, RFun, SUBPOP)
     
        FitnV = [];
 
-       %子群处理
 % loop over all subpopulations
 for irun = 1:SUBPOP,
    % Copy objective values of actual subpopulation
